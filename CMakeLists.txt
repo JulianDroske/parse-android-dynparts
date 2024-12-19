@@ -1,9 +1,17 @@
 cmake_minimum_required(VERSION 3.10)
 
+option(BUILD_STATIC "Build statically linked binary" OFF)
+
 project(parse-android-dynparts VERSION 0.1)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
+
+if(BUILD_STATIC)
+    set(CMAKE_FIND_LIBRARY_SUFFIXES ".a")
+    set(BUILD_SHARED_LIBS OFF)
+    set(CMAKE_EXE_LINKER_FLAGS "-static")
+endif()
 
 include(GNUInstallDirs)
 
