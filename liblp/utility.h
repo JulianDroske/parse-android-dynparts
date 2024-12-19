@@ -39,6 +39,10 @@
 
 #define CHECK assert
 
+#define CALL_RETRY(retvar, expression) do { \
+        retvar = (expression); \
+    } while (retvar == -1 && errno == EINTR);
+
 namespace android {
 namespace fs_mgr {
 
